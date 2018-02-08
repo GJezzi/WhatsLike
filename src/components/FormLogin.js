@@ -11,8 +11,14 @@ const formLogin = props => (
             <Text style={styles.txtTitle}>WhatsLike</Text>
         </View>
         <View style={styles.divFormLogin}>
-            <TextInput value={props.email} style={styles.txtEmail} placeholder='E-mail' onChangeText={texto => props.modifyEmail(texto)} />
-            <TextInput value={props.senha} style={styles.txtPassword} placeholder='Senha' onChangeText={texto => props.modifyPassword(texto)} />
+            <TextInput 
+                value={props.email} style={styles.txtEmail} 
+                placeholder='E-mail' onChangeText={texto => props.modifyEmail(texto)} 
+            />
+            <TextInput 
+                value={props.senha} style={styles.txtPassword} 
+                placeholder='Senha' onChangeText={texto => props.modifyPassword(texto)} 
+            />
             <TouchableHighlight onPress={() => { Actions.formCadastro(); }} >
                 <Text style={styles.txtLink}>Ainda não tem cadastro? Cadastre-se!</Text>
             </TouchableHighlight>

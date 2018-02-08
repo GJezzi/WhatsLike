@@ -1,9 +1,14 @@
 export const modifyEmail = (texto) => ({
-    type: 'modify_email',
+    type: 'MODIFY_EMAIL',
     payload: texto
 });
 
 export const modifyPassword = (texto) => ({
-    type: 'modify_password',
+    type: 'MODIFY_PASSWORD',
+    payload: texto
+});
+
+export const modifyName = (texto) => ({
+    type: 'MODIFY_NAME',
     payload: texto
 });
