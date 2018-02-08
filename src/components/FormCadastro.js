@@ -11,16 +11,22 @@ const formCadastro = props => (
         <View style={styles.container}>
             <View style={styles.divFormCadastro} >
                 <TextInput 
-                    value={props.nome} style={styles.txtInput} placeholder='Nome' 
+                    value={props.nome} style={styles.txtInput} 
+                    placeholder='Nome' 
+                    placeholderTextColor='#FFF'
                     onChangeText={texto => props.modifyName(texto)}
                 />
                 <TextInput 
-                    value={props.email} style={styles.txtInput} placeholder='E-mail' 
+                    value={props.email} style={styles.txtInput} 
+                    placeholderTextColor='#FFF'
+                    placeholder='E-mail' 
                     onChangeText={texto => props.modifyEmail(texto)}
                 />
                 <TextInput 
                     secureTextEntry
-                    value={props.senha} style={styles.txtInput} placeholder='Senha' 
+                    value={props.senha} style={styles.txtInput}
+                    placeholderTextColor='#FFF'
+                    placeholder='Senha' 
                     onChangeText={texto => props.modifyPassword(texto)}
                 />
             </View>
@@ -58,6 +64,7 @@ const styles = StyleSheet.create({
     },
     txtInput: {
         fontSize: 20,
-        height: 45
+        height: 45,
+        color: '#000'
     }
 });

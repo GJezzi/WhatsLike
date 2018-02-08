@@ -22,12 +22,16 @@ const formLogin = props => (
             </View>
             <View style={styles.divFormLogin}>
                 <TextInput 
-                    value={props.email} style={styles.txtEmail} 
-                    placeholder='E-mail' onChangeText={texto => props.modifyEmail(texto)} 
+                    value={props.email} style={styles.txtInput} 
+                    placeholder='E-mail' 
+                    placeholderTextColor='#FFF'
+                    onChangeText={texto => props.modifyEmail(texto)} 
                 />
                 <TextInput 
-                    value={props.senha} style={styles.txtPassword} 
-                    placeholder='Senha' onChangeText={texto => props.modifyPassword(texto)} 
+                    value={props.senha} style={styles.txtInput} 
+                    placeholder='Senha' 
+                    placeholderTextColor='#FFF'
+                    onChangeText={texto => props.modifyPassword(texto)} 
                     secureTextEntry
                 />
                 <TouchableHighlight onPress={() => { Actions.formCadastro(); }} >
@@ -70,17 +74,16 @@ const styles = StyleSheet.create({
         flex: 2
     },
     txtTitle: {
-        fontSize: 25
+        fontSize: 25,
+        color: '#FFF'
     },
-    txtEmail: {
+    txtInput: {
         fontSize: 20,
-        height: 45
-    },
-    txtPassword: {
-        fontSize: 20,
-        height: 45
+        height: 45,
+        color: '#000'
     },
     txtLink: {
         fontSize: 20,
+        color: '#FFF'
     }
 });
