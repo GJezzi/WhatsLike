@@ -1,51 +1,71 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, TextInput, Button, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 
-import { modifyEmail, modifyPassword, modifyName } from '../actions/AuthActions';
+import { modifyEmail, modifyPassword, modifyName, createUser } from '../actions/AuthActions';
 
 const background = require('../imgs/bg.png');
 
-const formCadastro = props => (
-    <ImageBackground source={background} style={styles.background} >
-        <View style={styles.container}>
-            <View style={styles.divFormCadastro} >
-                <TextInput 
-                    value={props.nome} style={styles.txtInput} 
-                    placeholder='Nome' 
-                    placeholderTextColor='#FFF'
-                    onChangeText={texto => props.modifyName(texto)}
-                />
-                <TextInput 
-                    value={props.email} style={styles.txtInput} 
-                    placeholderTextColor='#FFF'
-                    placeholder='E-mail' 
-                    onChangeText={texto => props.modifyEmail(texto)}
-                />
-                <TextInput 
-                    secureTextEntry
-                    value={props.senha} style={styles.txtInput}
-                    placeholderTextColor='#FFF'
-                    placeholder='Senha' 
-                    onChangeText={texto => props.modifyPassword(texto)}
-                />
-            </View>
-            <View style={styles.divButton} >
-                <Button title='Cadastrar' color='#115E54' onPress={() => false} />
-            </View>
-        </View>
-    </ImageBackground>
-);
+class FormCadastro extends Component {
+    mCreateUser() {
+        const { nome, email, senha } = this.props;
 
-const mapStateToProps = state => (
-    {
-        nome: state.AuthReducer.nome,
-        email: state.AuthReducer.email,
-        senha: state.AuthReducer.senha
+        this.props.createUser({ nome, email, senha });
     }
-);
 
-export default connect(mapStateToProps, { modifyEmail, modifyPassword, modifyName })(formCadastro);
+    render() {
+        return (
+            <ImageBackground source={background} style={styles.background}>
+                <View style={styles.container}>
+                    <View style={styles.divFormCadastro}>
+                        <TextInput
+                            value={this.props.nome}
+                            style={styles.txtInput}
+                            placeholder="Nome"
+                            placeholderTextColor="#FFF"
+                            onChangeText={texto => this.props.modifyName(texto)}
+                        />
+                        <TextInput
+                            value={this.props.email}
+                            style={styles.txtInput}
+                            placeholderTextColor="#FFF"
+                            placeholder="E-mail"
+                            onChangeText={texto => this.props.modifyEmail(texto)}
+                        />
+                        <TextInput
+                            secureTextEntry
+                            value={this.props.senha}
+                            style={styles.txtInput}
+                            placeholderTextColor="#FFF"
+                            placeholder="Senha"
+                            onChangeText={texto => this.props.modifyPassword(texto)}
+                        />
+                    </View>
+                    <View style={styles.divButton}>
+                        <Button
+                            title="Cadastrar"
+                            color="#115E54"
+                            onPress={() => this.mCreateUser()}
+                        />
+                    </View>
+                </View>
+            </ImageBackground>
+        );
+    }
+}
+
+const mapStateToProps = state => ({
+    nome: state.AuthReducer.nome,
+    email: state.AuthReducer.email,
+    senha: state.AuthReducer.senha
+});
+
+export default connect(mapStateToProps, {
+    modifyEmail,
+    modifyPassword,
+    modifyName,
+    createUser
+})(FormCadastro);
 
 const styles = StyleSheet.create({
     background: {

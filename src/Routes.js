@@ -8,18 +8,19 @@ export default class Routes extends Component {
     render() {
         return (
             <Router>
-                <Stack key='root'>
-                    <Scene 
-                        key='formLogin' 
-                        component={FormLogin} 
-                        title='Login' 
-                        titleStyle={{ alignSelf: 'center' }} initial
+                <Stack key="root">
+                    <Scene
+                        key="formLogin"
+                        component={FormLogin}
+                        title="Login"
+                        titleStyle={{ alignSelf: 'center' }}
+                        initial
                     />
-                    <Scene 
-                        key='formCadastro' 
-                        component={FormCadastro} 
-                        title='Cadastro' 
-                        titleStyle={{ alignSelf: 'center' }} 
+                    <Scene
+                        key="formCadastro"
+                        component={FormCadastro}
+                        title="Cadastro"
+                        titleStyle={{ alignSelf: 'center' }}
                     />
                 </Stack>
             </Router>
