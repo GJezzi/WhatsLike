@@ -30,5 +30,6 @@ const createUserSuccess = dispatch =>
 
 const createUserError = (error, dispatch) =>
     dispatch({
-        type: 'Erro!'
+        type: 'cadastro_usuario_erro',
+        payload: error.message
     });
