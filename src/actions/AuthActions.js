@@ -15,14 +15,20 @@ export const modifyName = texto => ({
     payload: texto
 });
 
-export const createUser = ({ nome, email, senha }) => {
+export const createUser = ({ nome, email, senha }) => dispatch => {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, senha)
-        .then(user => console.log(user))
-        .catch(error => console.log(error));
-
-    return {
-        type: 'teste'
-    };
+        .then(user => createUserSuccess(dispatch))
+        .catch(error => createUserError(error, dispatch));
 };
+
+const createUserSuccess = dispatch =>
+    dispatch({
+        type: 'Sucesso!'
+    });
+
+const createUserError = (error, dispatch) =>
+    dispatch({
+        type: 'Erro!'
+    });
