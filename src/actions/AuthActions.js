@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 export const modifyEmail = texto => ({
     type: 'MODIFY_EMAIL',
@@ -23,10 +24,11 @@ export const createUser = ({ nome, email, senha }) => dispatch => {
         .catch(error => createUserError(error, dispatch));
 };
 
-const createUserSuccess = dispatch =>
-    dispatch({
-        type: 'Sucesso!'
-    });
+const createUserSuccess = dispatch => {
+    dispatch({ type: 'Sucesso!' });
+
+    Actions.boasVindas();
+};
 
 const createUserError = (error, dispatch) =>
     dispatch({
