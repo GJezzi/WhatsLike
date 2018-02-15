@@ -25,7 +25,7 @@ export const createUser = ({ nome, email, senha }) => dispatch => {
 };
 
 const createUserSuccess = dispatch => {
-    dispatch({ type: 'Sucesso!' });
+    dispatch({ type: 'cadastro_usuario_sucesso' });
 
     Actions.boasVindas();
 };
