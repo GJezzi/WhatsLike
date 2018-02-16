@@ -5,7 +5,7 @@ export const INITIAL_STATE = {
     erroCadastro: ''
 };
 
-export default function forms(state = INITIAL_STATE, action) {
+export default (state = INITIAL_STATE, action) => {
     console.log(action);
     switch (action.type) {
         case 'MODIFY_EMAIL':
@@ -21,4 +21,4 @@ export default function forms(state = INITIAL_STATE, action) {
         default:
             return state;
     }
-}
+};
