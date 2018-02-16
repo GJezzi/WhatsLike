@@ -1,11 +1,11 @@
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
     nome: '',
     email: '',
     senha: '',
     erroCadastro: ''
 };
 
-export default (state = INITIAL_STATE, action) => {
+export default function forms(state = INITIAL_STATE, action) {
     console.log(action);
     switch (action.type) {
         case 'MODIFY_EMAIL':
@@ -21,4 +21,4 @@ export default (state = INITIAL_STATE, action) => {
         default:
             return state;
     }
-};
+}

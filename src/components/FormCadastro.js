@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
     erroCadastro: state.AuthReducer.erroCadastro
 });
 
-export default connect(mapStateToProps, {
+export default connect(null, mapStateToProps, {
     modifyEmail,
     modifyPassword,
     modifyName,

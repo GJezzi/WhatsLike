@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 
 import Routes from './Routes';
-import reducers from './reducers/Reducers';
+import combineReducers from './reducers/Reducers';
 
 export default class App extends Component {
     componentWillMount() {
@@ -22,7 +22,7 @@ export default class App extends Component {
     }
     render() {
         return (
-            <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+            <Provider store={createStore(combineReducers, {}, applyMiddleware(ReduxThunk))}>
                 <Routes />
             </Provider>
         );
