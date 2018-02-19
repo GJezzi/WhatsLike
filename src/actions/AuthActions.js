@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import b64 from 'base-64';
 
 export const modifyEmail = texto => ({
     type: 'MODIFY_EMAIL',
@@ -20,7 +21,14 @@ export const createUser = ({ nome, email, senha }) => dispatch => {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, senha)
-        .then(user => createUserSuccess(dispatch))
+        .then(user => {
+            const emailB64 = b64.encode(email);
+            firebase
+                .database()
+                .ref(`/contatos/${emailB64}`)
+                .push({ nome })
+                .then(value => createUserSuccess(dispatch));
+        })
         .catch(error => createUserError(error, dispatch));
 };
 
