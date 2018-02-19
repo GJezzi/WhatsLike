@@ -43,3 +43,21 @@ export const createUserError = (error, dispatch) =>
         type: 'cadastro_usuario_erro',
         payload: error.message
     });
+
+export const authenticateUser = ({ email, senha }) => dispatch => {
+    firebase
+        .auth()
+        .signInWithEmailAndPassword(email, senha)
+        .then(value => authUserSuccess(dispatch))
+        .catch(error => authUserError(error, dispatch));
+};
+
+export const authUserSuccess = dispatch => {
+    dispatch({ type: 'autenticacao_usuario_sucesso' });
+};
+
+export const authUserError = (error, dispatch) =>
+    dispatch({
+        type: 'autenticacao_usuario_erro',
+        payload: error.message
+    });

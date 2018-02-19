@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -11,53 +11,70 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import { modifyEmail, modifyPassword } from '../actions/AuthActions';
+import { modifyEmail, modifyPassword, authenticateUser } from '../actions/AuthActions';
 
 const background = require('../imgs/bg.png');
 
-const formLogin = props => (
-    <ImageBackground source={background} style={styles.background}>
-        <View style={styles.container}>
-            <View style={styles.divTop}>
-                <Text style={styles.txtTitle}>WhatsLike</Text>
-            </View>
-            <View style={styles.divFormLogin}>
-                <TextInput
-                    value={props.email}
-                    style={styles.txtInput}
-                    placeholder="E-mail"
-                    placeholderTextColor="#FFF"
-                    onChangeText={texto => props.modifyEmail(texto)}
-                />
-                <TextInput
-                    value={props.senha}
-                    style={styles.txtInput}
-                    placeholder="Senha"
-                    placeholderTextColor="#FFF"
-                    onChangeText={texto => props.modifyPassword(texto)}
-                    secureTextEntry
-                />
-                <TouchableHighlight
-                    onPress={() => {
-                        Actions.formCadastro();
-                    }}
-                >
-                    <Text style={styles.txtLink}>Ainda não tem cadastro? Cadastre-se!</Text>
-                </TouchableHighlight>
-            </View>
-            <View style={styles.divButton}>
-                <Button title="Acessar" color="#115E54" onPress={() => false} />
-            </View>
-        </View>
-    </ImageBackground>
-);
+class FormLogin extends Component {
+    mAuthenticateUser() {
+        const { email, senha } = this.props;
+        this.props.authenticateUser({ email, senha });
+    }
+
+    render() {
+        return (
+            <ImageBackground source={background} style={styles.background}>
+                <View style={styles.container}>
+                    <View style={styles.divTop}>
+                        <Text style={styles.txtTitle}>WhatsLike</Text>
+                    </View>
+                    <View style={styles.divFormLogin}>
+                        <TextInput
+                            value={this.props.email}
+                            style={styles.txtInput}
+                            placeholder="E-mail"
+                            placeholderTextColor="#FFF"
+                            onChangeText={texto => this.props.modifyEmail(texto)}
+                        />
+                        <TextInput
+                            value={this.props.senha}
+                            style={styles.txtInput}
+                            placeholder="Senha"
+                            placeholderTextColor="#FFF"
+                            onChangeText={texto => this.props.modifyPassword(texto)}
+                            secureTextEntry
+                        />
+                        <Text style={styles.errorText}>{this.props.erroAutenticacao}</Text>
+                        <TouchableHighlight
+                            onPress={() => {
+                                Actions.formCadastro();
+                            }}
+                        >
+                            <Text style={styles.txtLink}>Ainda não tem cadastro? Cadastre-se!</Text>
+                        </TouchableHighlight>
+                    </View>
+                    <View style={styles.divButton}>
+                        <Button
+                            title="Acessar"
+                            color="#115E54"
+                            onPress={() => this.mAuthenticateUser()}
+                        />
+                    </View>
+                </View>
+            </ImageBackground>
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     email: state.AuthReducer.email,
-    senha: state.AuthReducer.senha
+    senha: state.AuthReducer.senha,
+    erroAutenticacao: state.AuthReducer.erroAutenticacao
 });
 
-export default connect(mapStateToProps, { modifyEmail, modifyPassword })(formLogin);
+export default connect(mapStateToProps, { modifyEmail, modifyPassword, authenticateUser })(
+    FormLogin
+);
 
 const styles = StyleSheet.create({
     background: {
@@ -90,5 +107,10 @@ const styles = StyleSheet.create({
     txtLink: {
         fontSize: 20,
         color: '#FFF'
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 18,
+        padding: 15
     }
 });
