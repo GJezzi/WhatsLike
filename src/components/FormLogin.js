@@ -30,6 +30,7 @@ class FormLogin extends Component {
                     </View>
                     <View style={styles.divFormLogin}>
                         <TextInput
+                            testID="inputEmail"
                             value={this.props.email}
                             style={styles.txtInput}
                             placeholder="E-mail"
@@ -37,6 +38,7 @@ class FormLogin extends Component {
                             onChangeText={texto => this.props.modifyEmail(texto)}
                         />
                         <TextInput
+                            testID="inputSenha"
                             value={this.props.senha}
                             style={styles.txtInput}
                             placeholder="Senha"
@@ -46,6 +48,7 @@ class FormLogin extends Component {
                         />
                         <Text style={styles.errorText}>{this.props.erroAutenticacao}</Text>
                         <TouchableHighlight
+                            testID="formCadastro"
                             onPress={() => {
                                 Actions.formCadastro();
                             }}
@@ -55,6 +58,7 @@ class FormLogin extends Component {
                     </View>
                     <View style={styles.divButton}>
                         <Button
+                            testID="btnAcessar"
                             title="Acessar"
                             color="#115E54"
                             onPress={() => this.mAuthenticateUser()}

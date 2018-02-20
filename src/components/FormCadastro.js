@@ -19,6 +19,7 @@ class FormCadastro extends Component {
                 <View style={styles.container}>
                     <View style={styles.divFormCadastro}>
                         <TextInput
+                            testID="inputNome"
                             value={this.props.nome}
                             style={styles.txtInput}
                             placeholder="Nome"
@@ -26,6 +27,7 @@ class FormCadastro extends Component {
                             onChangeText={texto => this.props.modifyName(texto)}
                         />
                         <TextInput
+                            testID="inputCadastroEmail"
                             value={this.props.email}
                             style={styles.txtInput}
                             placeholderTextColor="#FFF"
@@ -33,6 +35,7 @@ class FormCadastro extends Component {
                             onChangeText={texto => this.props.modifyEmail(texto)}
                         />
                         <TextInput
+                            testID="inputCadstroSenha"
                             secureTextEntry
                             value={this.props.senha}
                             style={styles.txtInput}
@@ -44,6 +47,7 @@ class FormCadastro extends Component {
                     </View>
                     <View style={styles.divButton}>
                         <Button
+                            testID="btnCadastrar"
                             title="Cadastrar"
                             color="#115E54"
                             onPress={() => this.mCreateUser()}
