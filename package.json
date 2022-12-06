@@ -13,7 +13,7 @@
         "firebase": "^4.9.1",
         "jshint": "^2.9.5",
         "react": "16.2.0",
-        "react-native": "0.53.0",
+        "react-native": "0.70.6",
         "react-native-router-flux": "git+https://github.com/aksonov/react-native-router-flux.git",
         "react-redux": "^5.0.6",
         "react-test-renderer": "^16.2.0",
